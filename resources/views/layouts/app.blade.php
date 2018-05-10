@@ -19,6 +19,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+	
+	@stack ('css')
 </head>
 <body>
     <div id="app">
@@ -70,6 +72,10 @@
         <main class="py-4">
             @yield('content')
         </main>
+		
+		
     </div>
+	@stack ('modal')
+	@stack ('js')
 </body>
 </html>

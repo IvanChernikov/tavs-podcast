@@ -15,11 +15,20 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->timestamps();
+			$table->rememberToken();
+			
+			$table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
+			
+            $table->text('description')->nullable();
+			$table->string('image')->nullable();
+			
+			// Administration features 
+			$table->boolean('is_admin')->default(false);
+			// Used to add guests to casts, they won't show up in general cast list
+			$table->boolean('is_guest')->default(false);
         });
     }
 
