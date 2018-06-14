@@ -29,14 +29,17 @@ class HomeController extends Controller {
 		$date = Carbon::parse($request['date']);
 		$first = $date->copy()->startOfMonth();
 		$last = $date->copy()->lastOfMonth()->addDay();
-		$events = Event::whereBetween('starts_at', [$first, $last])->get();
+		$events = Event::whereBetween('starts_at', [$first, $last])->get()
+			->groupBy(function ($event, $key) {
+				return $event->starts_at->copy()->dayOfYear;
+			})->toArray();
 		return (string) view('event.calendar', compact('events', 'date'));
 	}
 	
 	public function day(Request $request) {
-		$date = Carbon::parse($request['date']);
-		$events = Event::where('starts_at', $date)->get();
-		return (string) view('home.day', compact('events', 'date'));
+		$date = Carbon::parse($request['date'])->startOfDay();
+		$events = Event::whereBetween('starts_at', [$date, $date->copy()->addDay()])->get();
+		return (string) view('event.list', compact('events', 'date'));
 	}
 	
 	public function cast() {

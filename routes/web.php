@@ -15,7 +15,7 @@ Route::get('/cast', 'HomeController@cast')->name('cast');
 Route::get('/archive', 'HomeController@archive')->name('archive');
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/calendar/day', 'HomeController@calendar')->name('calendar.day');
+Route::get('/calendar/day', 'HomeController@day')->name('calendar.day');
 Route::get('/calendar', 'HomeController@calendar')->name('calendar.month');
 
 

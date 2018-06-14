@@ -34,7 +34,7 @@ calendar = {
 	},
 	getDay: function (date) {
 		$('#EventModal').find('.modal-body')
-			.html('<h2><i class="fa fa-refresh fa-spin"></i> Loading...</h2>')
+			.html('<h2 class="text-center"><i class="fa fa-sync fa-spin fa-2x"></i><br>Loading...</h2>')
 		$('#EventModal').modal('toggle');
 		$.get('{{ route('calendar.day') }}', {
 				date: date
@@ -56,7 +56,7 @@ calendar = {
 	@slot ('id') EventModal @endslot
 	@slot ('title') Schedule @endslot
 	
-	<h2><i class="fa fa-refresh fa-spin"></i> Loading...</h2>
+	<h2><i class="fa fa-sync fa-spin"></i> Loading...</h2>
 	
 	@slot ('footer')
 	@endslot
